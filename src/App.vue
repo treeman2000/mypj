@@ -1,9 +1,6 @@
 <template>
   <div id="app">
-    输入什么 
-    <el-input placeholder='输入什么'></el-input>
-    <el-button>按钮</el-button>
-    <el-button @click="sendRequest">发送请求</el-button>
+    <query></query>
     <tb :pdata='tstList'></tb>
   </div>
 </template>
@@ -11,13 +8,14 @@
 <script>
 import axios from 'axios'
 import Tb from './components/tb.vue'
-
+import Query from './components/query.vue'
 // axios.defaults.headers['Access-Control-Allow-Origin']='true'
 
 export default {
   name: 'App',
   components: {
-    Tb
+    Tb,
+    Query
   },
   data(){
     return{
@@ -33,10 +31,10 @@ export default {
   methods:{
     sendRequest(){
       axios({
-        url: 'api'
+        url: 'http://localhost:8080/empty'
       }).then(res=>{
         console.log(res)
-      })
+      }).catch(err=>console.log(err))
     }
   }
 }
